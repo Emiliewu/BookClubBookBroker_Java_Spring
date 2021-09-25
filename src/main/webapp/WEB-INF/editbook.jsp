@@ -19,7 +19,8 @@
 			</div>
 			<form:form action="/books/${ editbook.id }/update" method="POST" modelAttribute="editbook">	
 			<input type="hidden" name="_method" value="PUT">
-			<input type="hidden" name="borrower" value="${ bid }">		
+			<form:hidden path="borrower" />	
+			<form:hidden path="owner" />	
 		    <div class="mb-3 row">
 		        <form:label path="title" class="col-sm-2 col-form-label">Title</form:label>
 		        <div class="col-sm-10">
@@ -47,6 +48,9 @@
 	         	</div>
 	         </div>
 		</form:form>  
+		<c:if test="${ editbook.borrower==null }">
+			<a href="/books/${ editbook.id }/delete">Delete</a>
+		</c:if>
 		</div>
 	</div>
 </body>

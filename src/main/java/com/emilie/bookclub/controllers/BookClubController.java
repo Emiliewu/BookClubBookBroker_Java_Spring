@@ -81,8 +81,6 @@ public class BookClubController {
 			User user = userServ.findUserById(userId);
 			if(editbook.getOwner().getId()==user.getId()) {				
 				model.addAttribute("editbook", editbook);
-				Long bid = editbook.getBorrower().getId();
-				model.addAttribute("bid", bid);
 				return "editbook.jsp";		
 			} else {
 				return "redirect:/books";
@@ -90,14 +88,11 @@ public class BookClubController {
 		}		
 	}
 	@PutMapping("/books/{id}/update")
-	public String updateBook(@Valid @ModelAttribute("editbook") Book editbook, BindingResult result, HttpSession session, @RequestParam("borrower") String bid) {
+	public String updateBook(@Valid @ModelAttribute("editbook") Book editbook, BindingResult result, HttpSession session) {
 		Long userId = (Long)session.getAttribute("user_id");
 		if(result.hasErrors()) {
 			return "editbook.jsp";
 		} else {
-			editbook.setOwner(userServ.findUserById(userId));
-			Long borrowerid = Long.parseLong(bid);
-			editbook.setBorrower(userServ.findUserById(borrowerid));
 			bookServ.updateBook(editbook);
 			return "redirect:/books";
 		}
