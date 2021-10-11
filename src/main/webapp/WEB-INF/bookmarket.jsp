@@ -33,14 +33,14 @@
 			</thead>
 			<tbody>
 			<c:forEach var="b" items="${ allbooks }">
-				<c:if test="${ b.getBorrower()==null }">
+				<c:if test="${ b.borrower==null }">
 				<tr>
 					<td scope="row"><c:out value="${ b.id }"/></td>
 					<td scope="row"><a href="/books/${ b.id }"><c:out value="${ b.title }"/></a></td>
 					<td scope="row"><c:out value="${ b.author }"/></td>
-					<td scope="row"><c:out value="${ b.getOwner().getUsername() }"/></td>
+					<td scope="row"><c:out value="${ b.owner.username }"/></td>
 					<c:choose>
-					<c:when test="${ b.owner.id==user.id }">
+					<c:when test="${ b.owner.id==userId }">
 					<td scope="row"><a href="/books/${ b.id }/edit">edit</a> || <a href="/books/${ b.id }/delete">delete</a></td>
 					</c:when>
 					<c:otherwise>
@@ -67,7 +67,7 @@
 			</thead>
 			<tbody>
 			<c:forEach var="b" items="${ allbooks }">
-				<c:if test="${ b.borrower.id==user.id }">
+				<c:if test="${ b.borrower.id==userId }">
 				<tr>
 					<td scope="row"><c:out value="${ b.id }"/></td>
 					<td scope="row"><a href="/books/${ b.id }"><c:out value="${ b.title }"/></a></td>

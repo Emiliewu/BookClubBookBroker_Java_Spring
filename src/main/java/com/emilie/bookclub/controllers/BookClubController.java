@@ -25,10 +25,10 @@ import com.emilie.bookclub.services.UserService;
 public class BookClubController {
 	
 	@Autowired
-	UserService userServ;
+	private UserService userServ;
 	
 	@Autowired
-	BookService bookServ;
+	private BookService bookServ;
 	
 	//****dashboard for all books******
 	@GetMapping("/books")
@@ -106,8 +106,9 @@ public class BookClubController {
 			return "redirect:/";
 		} else {	
 		Book book = bookServ.findBookById(id);
-		User user = userServ.findUserById(userId);
-		model.addAttribute("user", user);
+		//User user = userServ.findUserById(userId);
+		model.addAttribute("userId", userId);
+		//model.addAttribute("user", user);
 		model.addAttribute("book", book);
 		return "bookdetail.jsp";
 		}
@@ -136,10 +137,10 @@ public class BookClubController {
 		if(userId == null) {
 			return "redirect:/";
 		} else {
-			User user = userServ.findUserById(userId);
+			//User user = userServ.findUserById(userId);
 			List<Book> allbooks = bookServ.findAllBooks();
-
-			model.addAttribute("user", user);
+			model.addAttribute("userId", userId);
+			//model.addAttribute("user", user);
 			model.addAttribute("allbooks", allbooks);
 			
 			return "bookmarket.jsp";

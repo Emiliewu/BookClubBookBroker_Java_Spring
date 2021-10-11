@@ -19,7 +19,7 @@
 		<div class="container-sm my-3 p-3 col-8">
 		<p class="p-3">
 		 <c:choose> 
-		 	<c:when test="${ book.owner.id==user.id }">
+		 	<c:when test="${ book.owner.id==userId }">
 		 	
 		 	<span style="color:#6495ED;">You </span>
 			</c:when>

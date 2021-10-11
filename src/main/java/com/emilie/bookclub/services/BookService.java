@@ -15,10 +15,10 @@ import com.emilie.bookclub.repositories.UserRepository;
 public class BookService {
 	
 	@Autowired
-	UserRepository userRepo;
+	private UserRepository userRepo;
 	
 	@Autowired
-	BookRepository bookRepo;
+	private BookRepository bookRepo;
 	
 	//find all books
 	public List<Book> findAllBooks() {
